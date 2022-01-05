@@ -17,8 +17,8 @@ weatherForm.addEventListener('submit',(e)=>{
             messageOne.textContent = data.error
         }
         else{
-            messageOne.textContent = 'Your location '+data.location
-            messageTwo.textContent = 'Temperature right now -> '+data.temperature
+            messageOne.textContent = 'Your location '+data.location + ". A short description -> " + data.description
+            messageTwo.textContent = 'Temperature right now -> '+data.temperature + " and it feels like " + data.feelsLikeTemp + ". Humidity is " + data.humidity + " and wind speed is -> " + data.wind_speed 
         }
     })
 })

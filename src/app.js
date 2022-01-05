@@ -23,14 +23,14 @@ app.use(express.static(staticPath))
 app.get('/',(req,res)=>{
     res.render('index',{
         title: "Weather",
-        name: "Elliot"
+        name: "fsoc"
     })
 })
 
 app.get('/about',(req,res)=>{
     res.render('about',{
         title: 'About page',
-        name: 'Elliot'
+        name: 'fsoc'
     })
 })
 
@@ -38,7 +38,7 @@ app.get('/help',(req,res)=>{
     res.render('help',{
         message: "Welcome to fsociety",
         title: "Help",
-        name: "Elliot"
+        name: "fsoc"
     })
 })
 app.get('/weather',(req,res)=>{
@@ -53,7 +53,7 @@ app.get('/weather',(req,res)=>{
                 error: error
             })
         }
-        forecast(latitude, longitude, (error, { temperature , feelsLikeTemp } = {})=>{
+        forecast(latitude, longitude, (error, { temperature , feelsLikeTemp, humidity, wind_speed, description } = {})=>{
             if(error){
                 return res.send({
                     error: error
@@ -65,7 +65,10 @@ app.get('/weather',(req,res)=>{
                 temperature: temperature,
                 feelsLikeTemp: feelsLikeTemp,
                 location: location,
-                address: req.query.address
+                address: req.query.address,
+                humidity: humidity,
+                wind_speed: wind_speed,
+                description: description,
             })
 
         })
@@ -88,7 +91,7 @@ app.get('/products',(req,res)=>{
 app.get('/help/*',(req,res)=>{
     res.render('error404',{
         title: "404",
-        name : "Elliot",
+        name : "fsoc",
         errorMsg : "Help article not found"
     })
 })
@@ -99,7 +102,7 @@ app.get('/help/*',(req,res)=>{
 app.get('*',(req,res)=>{
     res.render('error404',{
         title: "404",
-        name : "Elliot",
+        name : "fsoc",
         errorMsg: "Page not found"
     })
 })
